@@ -1,13 +1,14 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-
+module.exports = { 
   entry: {
     app: './src/index.js',
   },
 
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
@@ -27,11 +28,9 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              ['@babel/preset-env', { targets: "defaults" }]
-            ]
-          }
-        }
+            presets: [['@babel/preset-env', { targets: 'defaults' }]],
+          },
+        },
       },
       {
         test: /\.css$/i,
